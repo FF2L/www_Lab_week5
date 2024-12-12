@@ -1,10 +1,7 @@
 package com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -12,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Component
-@Data
+@Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Company  {
@@ -28,6 +25,7 @@ public class Company  {
     private String phone;
     private String webURL;
     @OneToMany(mappedBy = "company") // ánh xạ qua class job với tên biến company
+    @ToString.Exclude // Ngăn lỗi vòng lặp toString
     private List<Job> jobs;
     private String email;
     @OneToOne(mappedBy = "company")

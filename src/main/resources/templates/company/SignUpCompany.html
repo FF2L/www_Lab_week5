@@ -15,13 +15,13 @@
   <br/>
   <label>Tên công ty: </label> <input type="text" th:field="*{company.name}" required>
   <br/>
-  <label>Số diện thoại công ty: </label> <input type="text" th:field="*{company.phone}"  required>
+  <label>Số diện thoại công ty: </label> <input type="number" th:field="*{company.phone}"  required>
   <br/>
-  <label>Email công ty: </label> <input type="text" th:field="*{company.email}" required>
+  <label>Email công ty: </label> <input type="email" th:field="*{company.email}" required>
   <br/>
   <label>Mật khẩu: </label> <input type="text" th:field="*{password}" required>
   <br/>
-  <input type="submit" title="Đăng ký">
+  <input type="submit" value="Đăng ký" >
 </form>
 
   <script th:inline="javascript">

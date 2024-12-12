@@ -2,22 +2,32 @@ package com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.frontend.cotrollers.post.
 
 import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.models.UserPassCompany;
 import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.services.company.CompanyService;
+import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.frontend.models.PhanHoiVaIdCom;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/Login")
 public class PostLoginComController {
     @Autowired
     private CompanyService companyService;
+    @Autowired
+    private PhanHoiVaIdCom phanHoiVaIdCom;
     @PostMapping("/CompanyHome")
-    public String dangNhapCuaCongTy(@ModelAttribute ("userPassCompany")UserPassCompany userPassCompany){
-        String phanHoi = companyService.LoginCompany(userPassCompany);
+    public String dangNhapCuaCongTy(HttpSession session, @ModelAttribute ("userPassCompany")UserPassCompany userPassCompany, RedirectAttributes redirectAttributes){
+        phanHoiVaIdCom = companyService.LoginCompany(userPassCompany);
+        String phanHoi = phanHoiVaIdCom.getPhanHoi();
         if (!phanHoi.equals("Ok"))
             return "redirect:/Login/Company?error="+phanHoi;
-        return "redirect:/Company/Home";
+        redirectAttributes.addFlashAttribute("ad", phanHoiVaIdCom.getId());
+        Long taoJobId = (long) -1;
+        session.setAttribute("taoJobId",taoJobId);
+        session.setAttribute("IdCompany",phanHoiVaIdCom.getId());//Id cua3 company
+        return "redirect:/Company/Home?ad="+phanHoiVaIdCom.getId();
     }
 }

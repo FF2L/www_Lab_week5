@@ -1,15 +1,12 @@
 package com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-@Data
+@Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserPassCompany {

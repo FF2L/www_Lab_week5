@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -23,6 +24,16 @@ public class Skill {
     private String skillName;
     private String skillDescription;
     @OneToMany(mappedBy = "skill")
+    @ToString.Exclude // Ngăn lỗi vòng lặp toString
     private List<JobSkill> jobSkills;
 
+    public Skill(EnumModel.SkillType type, String skillName, String skillDescription) {
+        this.type = type;
+        this.skillName = skillName;
+        this.skillDescription = skillDescription;
+    }
+
+    public Skill(Long id) {
+        this.id = id;
+    }
 }

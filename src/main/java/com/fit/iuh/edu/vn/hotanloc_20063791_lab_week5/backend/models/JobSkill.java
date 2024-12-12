@@ -26,4 +26,11 @@ public class JobSkill {
     @MapsId("skillId") // ánh xạ qua trường skillId bên class JobKill_Id
     @JoinColumn(name = "skill_id")
     private Skill skill;
+
+    public JobSkill(EnumModel.SkillLevel skillLevel, Job job, String moreInfo, Skill skill) {
+        this.skillLevel = skillLevel;
+        this.job = job;
+        this.moreInfo = moreInfo;
+        this.skill = skill;
+    }
 }

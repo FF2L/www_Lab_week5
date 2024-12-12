@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 // thay controller bằng Controller Advice
+//@ControllerAdvice là một annotation trong Spring Framework,
+// được sử dụng để xử lý các logic liên quan đến các controller
+// của ứng dụng một cách tập trung và toàn cục
+// ở đây giống như là sử dụng set biến này cho toàn bộ controller
 @ControllerAdvice
 public class LoadingController {
 
