@@ -1,7 +1,7 @@
 package com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.repositories;
 
 import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.models.JobSkill;
-import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.models.JobSkill_Id;
+import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.ids.JobSkill_Id;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

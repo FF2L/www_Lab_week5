@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
+@Scope("prototype")
 public class UserPassCandidate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +30,10 @@ public class UserPassCandidate {
         this.userName = userName;
         this.password = password;
     }
+
+    public UserPassCandidate(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
 }

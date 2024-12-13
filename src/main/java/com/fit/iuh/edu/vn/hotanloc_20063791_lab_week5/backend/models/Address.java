@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -12,6 +13,12 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+//tạo ra một bean mới mỗi lần được yêu cầu
+// nghĩa là gọi hàm có chứa đối tượng này thì mỗi lần gọi hàm thì tao5 mới đối tượng
+//chứ ko phải là tạo một đối tượng duy nhất và sử dụng nó cho tất cả các lần gọi hàm
+//chỉ thay đổi giá trị của nó tránh lỗi là hibernate xác nhận là sử dụng 1 đối tượng này cho
+//nhiều đối tượng khác nhau
+@Scope("prototype")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

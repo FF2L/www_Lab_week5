@@ -1,9 +1,9 @@
 package com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.services.company;
 
 import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.enums.EnumModel;
+import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.ids.JobSkill_Id;
 import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.models.*;
 import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.repositories.*;
-import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.frontend.models.JobSkillvaIdCom;
 import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.frontend.models.PhanHoiVaIdCom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,7 +62,7 @@ public class CompanyService {
     public PhanHoiVaIdCom LoginCompany(UserPassCompany userPassCompany) {
         userPassCom = userPassCom_repository
                 .findByUserNameAndPassword(userPassCompany.getUserName(), userPassCompany.getPassword());
-        if (userPassCom == null){
+        if (userPassCom == null) {
             phanHoiVaIdCom.setPhanHoi("UserPassNotOk");
             return phanHoiVaIdCom;
         }
@@ -71,7 +71,7 @@ public class CompanyService {
         return phanHoiVaIdCom;
     }
 
-    public List<String> listSkillLevel(){
+    public List<String> listSkillLevel() {
         List<String> listSkillLevel = new ArrayList<>();
         listSkillLevel.add(EnumModel.SkillLevel.MASTER.toString());
         listSkillLevel.add(EnumModel.SkillLevel.BEGINNER.toString());
@@ -81,36 +81,45 @@ public class CompanyService {
         return listSkillLevel;
     }
 
-    public void themJob(Job job){
+    public void themJob(Job job) {
         System.out.println("da Them Job");
         job_repositories.save(job);
     }
 
 
-    public long themJobSkill (Long taoJobId,Long IdCompany, JobSkill jobSkilla){
-       company.setId(IdCompany);
+    public long themJobSkill(Long taoJobId, Long IdCompany, JobSkill jobSkilla) {
+        Company com1 = new Company();
+        com1.setId(IdCompany);
         //Neu la -1 thi tao moi khong6 thi tiep tuc
-       if (taoJobId ==-1){
-              job.setCompany(company);
-              job = job_repositories.save(job);
-       }else {
-           job = job_repositories.findById(taoJobId).get();
-       }
-       Long idJob = job.getId();
-       jobSkill_id.setJobId(idJob);
-       jobSkill_id.setSkillId(jobSkilla.getSkill().getId());
-       jobSkilla.setId(jobSkill_id);
-       jobSkilla.setJob(job);
-       jobSkill_repositories.save(jobSkilla);
-       return idJob;
+        Job job1 = new Job();
+        if (-1 == taoJobId) {
+            job1.setId(null);
+            job1.setCompany(com1);
+            job1 = job_repositories.save(job1);
+            System.out.println("Cong viec -1");
+        } else {
+            job1 = job_repositories.findById(taoJobId).get();
+            System.out.println("Cong viec khac -1 232");
+        }
+
+        Long idJob = job1.getId();
+        System.out.println("idJob sau khi  ra if else " + idJob);
+        JobSkill_Id js_id = new JobSkill_Id();
+        js_id.setJobId(idJob);
+        js_id.setSkillId(jobSkilla.getSkill().getId());
+        jobSkilla.setId(js_id);
+        jobSkilla.setJob(job1);
+        System.out.println("jobskill" + jobSkilla);
+        jobSkill_repositories.save(jobSkilla);
+        return idJob;
     }
 
-    public List<JobSkill> listJobSkill(Long JobId){
+    public List<JobSkill> listJobSkill(Long JobId) {
         return jobSkill_repositories.TimJobSkillBangIdCongTyVaIdSkill(JobId);
     }
 
-    public List<Job> listJob(Long idCom){
-            return job_repositories.danhSachTatCaJobKhongCoTen(idCom);
+    public List<Job> listJob(Long idCom) {
+        return job_repositories.danhSachTatCaJobKhongCoTen(idCom);
 
     }
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.yaml.snakeyaml.nodes.ScalarNode;
 
@@ -16,6 +17,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Scope("prototype")
 public class Candidate {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)

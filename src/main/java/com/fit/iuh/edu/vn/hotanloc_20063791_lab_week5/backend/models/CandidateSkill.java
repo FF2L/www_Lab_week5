@@ -1,10 +1,12 @@
 package com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.models;
 
 import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.enums.EnumModel;
+import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.ids.CandidateSkill_Id;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Scope("prototype")
 public class CandidateSkill {
     @EmbeddedId
     private CandidateSkill_Id id;

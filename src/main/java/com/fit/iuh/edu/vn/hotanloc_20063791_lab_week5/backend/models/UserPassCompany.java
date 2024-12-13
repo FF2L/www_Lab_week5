@@ -2,6 +2,7 @@ package com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Scope("prototype")
 public class UserPassCompany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

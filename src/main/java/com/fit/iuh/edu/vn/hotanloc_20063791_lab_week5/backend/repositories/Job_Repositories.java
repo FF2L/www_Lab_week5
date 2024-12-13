@@ -13,4 +13,11 @@ public interface Job_Repositories extends JpaRepository<Job,Long> {
 
     @Query("SELECT j FROM Job j WHERE j.name IS NOT NULL AND j.company.id = :idCom")
     List<Job> danhSachTatCaJobKhongCoTen(@Param("idCom") Long idCom);
+
+    @Query("SELECT j " +
+            "FROM Job j " +
+            "JOIN JobSkill js ON j.id = js.job.id " +
+            "JOIN CandidateSkill cs ON js.skill.id = cs.skill.id " +
+            "WHERE cs.candidate.id = :idCan")
+    List<Job> danhSachJobDeXuat(@Param("idCan") Long idCan);
 }
