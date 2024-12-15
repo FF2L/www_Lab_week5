@@ -1,0 +1,53 @@
+nav{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:50px;
+}
+.ulMenu{
+    list-style-type:none;
+    display:flex;
+    justify-content:space-between;
+    flex-direction:row;
+    gap:10px;
+}
+h2{
+    justify-self:center;
+    align-self:center;
+}
+h3{
+    justify-self:center;
+    align-self:center;
+}
+p{
+    margin-bottom:30px;
+}
+button{
+    margin:3px;
+}
+form{
+    justify-self:center;
+    justify-items:center;
+    display:flex;
+    flex-direction:column;;
+    gap:10px;
+}
+.divKyNang{
+    align-items:center;
+    display:flex;
+    flex-direction:row;
+    gap:15px;
+
+}
+table{
+    border:0.5px solid;
+    width:75vw;
+    justify-self:center;
+}
+td{
+    border:0.5px solid;
+    word-wrap: break-word; /* Tự xuống dòng khi quá dài */
+    white-space: normal; /* Cho phép xuống dòng */
+    max-width: 200px; /* (Tùy chọn) Đặt giới hạn chiều rộng */
+}

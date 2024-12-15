@@ -5,6 +5,7 @@ import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.ids.JobSkill_Id;
 import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.models.*;
 import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.backend.repositories.*;
 import com.fit.iuh.edu.vn.hotanloc_20063791_lab_week5.frontend.models.PhanHoiVaIdCom;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -121,5 +122,10 @@ public class CompanyService {
     public List<Job> listJob(Long idCom) {
         return job_repositories.danhSachTatCaJobKhongCoTen(idCom);
 
+    }
+
+    @Transactional
+    public void deleteJobSkill(Long id) {
+        jobSkill_repositories.deleteBySkillId(id);
     }
 }

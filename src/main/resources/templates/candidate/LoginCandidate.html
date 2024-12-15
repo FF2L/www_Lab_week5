@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
-<head th:replace="~{Component/loading/HeadPage :: head}"></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loc's Job Search App</title>
+    <link rel="icon" type="image/jpeg" th:href="@{/images/logowww.jpg}" >
+    <meta property="og:image" th:content="@{/images/logowww.jpg}">
+    <link rel="stylesheet" href="/css/candidate/LoginCandidate.css">
+</head>
 <body>
-    <p>This is Login Candidate</p>
+    <h3>Login Candidate</h3>
     <p th:if="${#strings.equals(param.error,'UserNameAndPasswordNotOk')}">Sai tên đăng nhập hoặc mật khẩu</p>
 <form
 method="post"
@@ -12,12 +17,12 @@ th:object="${userPassCan}"
 th:action="@{/Candidate/checkUserPass}"
 >
     <label>User name</label>
-    <input type="text" required th:field="*{userName}">
+    <input id="userName" type="text" required th:field="*{userName}">
     <br>
     <label>Password</label>
-    <input type="password" required th:field="*{password}">
+    <input id="password" type="password" required th:field="*{password}">
     <br>
-    <input type="submit" value="Đăng nhập">
+    <input id="submit" type="submit" value="Đăng nhập">
 </form>
 </body>
 </html>

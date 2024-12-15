@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
-<head th:replace="~{Component/loading/HeadPage :: head}"></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loc's Job Search App</title>
+    <link rel="icon" type="image/jpeg" th:href="@{/images/logowww.jpg}" >
+    <meta property="og:image" th:content="@{/images/logowww.jpg}">
+    <link rel="stylesheet" href="/css/company/CompanyAddJob.css">
+</head>
 <body>
-<p>This is Company Add job</p>
-<p th:text="${id}"></p>
 <nav>
     <ul>
-        <li><a th:href="@{/Company/Home(ad=${ad})}">Trang chu</a></li>
-        <li><a th:href="@{/Company/AddJob(ad=${ad})}">Dang tuyen nguoi</a></li>
+        <li><a th:href="@{/Company/Home(ad=${ad})}">Trang chủ</a></li>
+        <li><a th:href="@{/Company/AddJob(ad=${ad})}">Đăng tuyển người</a></li>
     </ul>
+    <button>Cập nhật thông tin</button>
 </nav>
 
 <div th:if="${#strings.equals(param.error, 'LoiChuaThemJobSkill')}">
@@ -26,11 +30,11 @@
     <br/>
     <label>Mô tả công việc: </label>
     <textarea cols="15" rows="5" th:field="*{description}" required></textarea>
+    <br>
     <input type="submit" value="Thêm công việc">
 </form>
-
 <p>Thêm job skill</p>
-<div>
+<div class="divJobSkill">
 <form method="post"
       th:object="${jobSkill}"
       th:action="@{/Company/SaveJobSkill(ad=${ad})}"
@@ -53,8 +57,8 @@
     <input type="submit" value="Thêm Job skill">
 </form>
 
+    <div>
 <!--<div th:if="${listJobSkill != null and !#lists.isEmpty(listJobSkill)}">-->
-    <p>Bảng jobSkill</p>
     <table border="1">
         <tr>
             <th>STT</th>
@@ -68,15 +72,16 @@
             <td th:text="${item.skill.skillName}"></td>
             <td th:text =${item.skillLevel}></td>
             <td th:text =${item.moreInfo}></td>
-            <td><a>Delete</a></td>
+            <td><a th:href="@{/Company/AddJob(Delete=${item.skill.id})}">Delete</a></td>
 
         </tr>
     </table>
-
+    </div>
 <!--</div>-->
+
 </div>
-<p>Bảng công việc</p>
-<table border="1">
+<p>Bảng Công việc</p>
+<table class="tblCongViec" border="1">
     <tr>
         <th>STT</th>
         <th>Tên công việc</th>

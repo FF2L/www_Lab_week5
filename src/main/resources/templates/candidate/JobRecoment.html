@@ -1,40 +1,50 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
-<head th:replace="~{Component/loading/HeadPage :: head}"></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loc's Job Search App</title>
+    <link rel="icon" type="image/jpeg" th:href="@{/images/logowww.jpg}" >
+    <meta property="og:image" th:content="@{/images/logowww.jpg}">
+    <link rel="stylesheet" href="/css/candidate/JobRecomment.css">
+</head>
 <body>
-<p>This is Job Recoment</p>
 <nav>
-    <ul>
+    <ul class="ulMenu">
         <li><a th:href="@{/Candidate/Home}">Home</a></li>
         <li th:if="${session.idCan} != -1"><a th:href="@{/Candidate/JobRecoment}">Công việc đề xuất</a></li>
     </ul>
+    <div class="btnHomePage">
+        <button th:if="${session.idCan} != -1">Cập nhật thông tin</button>
+        <button th:if="${session.idCan} != -1" onclick="location.href='/Candidate/UpdateSkill'">Update Skill</button>
+        <button th:if="${session.idCan} != -1" onclick="location.href='/Candidate/Home?Logout=true'">LogOut</button>
+    </div>
 </nav>
 
-<button><a th:href="@{/Candidate/Login}">Login</a></button>
-<button><a th:href="@{/Candidate/SignUp}">SignUp</a></button>
-<button th:if="${session.idCan} != -1"><a>Cập nhật thông tin</a></button>
-<button th:if="${session.idCan} != -1"><a th:href="@{/Candidate/UpdateSkill}">Cập nhật Skill</a></button>
+<p><h3>Job Recoment for you</h3></p>
 
-
-<div th:each="item : ${listJobRecomment}">
+<div class="danhSachCongViec" th:each="item : ${listJobRecomment}">
+    <div div class="itemCongViec">
+        <label>Công ty: </label>
+        <h4 th:text="${item.job.company.name}"></h4>
+    </div>
+    <div div class="itemCongViec">
     <label>Tên công việc: </label>
-    <h3 th:text="${item.job.name}"></h3>
-    <br>
+    <h4 th:text="${item.job.name}"></h4>
+    </div>
+    <div div class="itemCongViec">
     <label>Kỹ năng công việc: </label>
-    <ul th:each="jskill: ${item.job.jobSkills}">
-        <li th:text="${jskill.skill.skillName}"></li>
+        <ul class="ulDanhSachSkill">
+            <li class="liDanhSachSkill" th:each="jskill: ${item.job.jobSkills}" th:text="${jskill.skill.skillName}"></li>
     </ul>
-    <br>
-    <label>Công ty: </label>
-    <h3 th:text="${item.job.company.name}"></h3>
-    <br>
+    </div>
+    <div div class="itemCongViec">
     <label th:if="${!#lists.isEmpty(item.listSkillDeXuat)}">Kỹ năng còn thiếu</label>
-    <ul th:each="skill : ${item.listSkillDeXuat}">
-        <li th:text="${skill}">
+        <ul class="ulDanhSachSkillDeXuat" >
+            <li class="liDanhSachSkillDeXuat" th:each="skill : ${item.listSkillDeXuat}" th:text="${skill}">
         </li>
     </ul>
+    </div>
 </div>
 </body>
 </html>

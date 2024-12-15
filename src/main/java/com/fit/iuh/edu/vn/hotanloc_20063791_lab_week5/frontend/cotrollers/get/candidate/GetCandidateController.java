@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -31,7 +32,10 @@ public class GetCandidateController {
 
 
     @GetMapping("/Home")
-    public String trangChuCandidate(Model model, HttpSession session){
+    public String trangChuCandidate(Model model, HttpSession session, @RequestParam(value = "Logout",required = false) String logout){
+        if(logout !=null)
+            session.setAttribute("idCan",(long) -1);
+
         Long idCan =(Long) session.getAttribute("idCan");
         List<JobVaListSkillDeXuat> jobVaListSkillDeXuatList = candidateService.danhsachJob(idCan);
         System.out.println(session.getAttribute("idCan"));

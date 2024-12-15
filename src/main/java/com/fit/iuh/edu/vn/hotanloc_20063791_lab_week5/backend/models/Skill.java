@@ -25,7 +25,7 @@ public class Skill {
     private EnumModel.SkillType type;
     private String skillName;
     private String skillDescription;
-    @OneToMany(mappedBy = "skill")
+    @OneToMany(mappedBy = "skill", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @ToString.Exclude // Ngăn lỗi vòng lặp toString
     private List<JobSkill> jobSkills;
 

@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
-<head th:replace="~{Component/loading/HeadPage :: head}"></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loc's Job Search App</title>
+    <link rel="icon" type="image/jpeg" th:href="@{/images/logowww.jpg}" >
+    <meta property="og:image" th:content="@{/images/logowww.jpg}">
+    <link rel="stylesheet" href="/css/company/CompanyHome.css">
+</head>
 <body>
-<p>This is CompanyHome</p>
-<p th:text="${ad}"></p>
 <nav>
     <ul>
-        <li><a th:href="@{/Company/Home(ad=${ad})}">Trang chu</a></li>
-        <li><a th:href="@{/Company/AddJob(ad=${ad})}">Dang tuyen nguoi</a></li>
+        <li><a th:href="@{/Company/Home(ad=${ad})}">Trang chủ</a></li>
+        <li><a th:href="@{/Company/AddJob(ad=${ad})}">Đăng tuyển người</a></li>
     </ul>
+    <button>Cập nhật thông tin</button>
 </nav>
 
 <div>

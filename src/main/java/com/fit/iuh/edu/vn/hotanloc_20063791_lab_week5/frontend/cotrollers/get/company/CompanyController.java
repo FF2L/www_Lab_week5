@@ -40,8 +40,14 @@ public class CompanyController {
     @GetMapping("/AddJob")
     public String addJob(
                          HttpSession session,
-                         Model model, RedirectAttributes redirectAttributes){
+                         Model model, RedirectAttributes redirectAttributes,
+                         @RequestParam(value = "Delete",required = false) String delete
 
+    ){
+        if (delete !=null){
+            Long id = Long.parseLong(delete);
+            companyService.deleteJobSkill(id);
+        }
 
         model.addAttribute("jobSkill",jobSkill  );
         model.addAttribute("listSkillLevel",companyService.listSkillLevel());

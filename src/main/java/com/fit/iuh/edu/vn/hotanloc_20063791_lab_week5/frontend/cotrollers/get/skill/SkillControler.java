@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/Skill")
@@ -17,7 +19,11 @@ public class SkillControler {
     private SkillService skillService;
 
     @GetMapping("/AddSkill")
-    public String addSkill(Model model){
+    public String addSkill(Model model, @RequestParam(value = "delete",required = false) String id){
+        if (id != null){
+            Long idSkill =Long.parseLong(id);
+            skillService.deleteSkill(idSkill);
+        }
         model.addAttribute("skill", skill);
         model.addAttribute("listSkillType",skillService.listSkillType());
         model.addAttribute("listSkill",skillService.listSkill());

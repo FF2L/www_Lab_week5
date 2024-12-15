@@ -1,25 +1,31 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
-<head th:replace="~{Component/loading/HeadPage :: head}"></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loc's Job Search App</title>
+  <link rel="icon" type="image/jpeg" th:href="@{/images/logowww.jpg}" >
+  <meta property="og:image" th:content="@{/images/logowww.jpg}">
+  <link rel="stylesheet" href="/css/company/SignUpCompany.css">
+</head>
 <body>
-<h1>This is SignUpCompanny</h1>
+<h1>SignUp Companny</h1>
 <form
+        id="formSignUpCompany"
         method="post"
         th:action="@{${saveSignUpCom}}"
         th:object="${userPassCompany}"
 >
 
-  <label>Tên đăng nhập: </label> <input type="text" th:field="*{userName}" required>
+  <label class="label" >Tên đăng nhập: </label> <input class="input" type="text" th:field="*{userName}" required>
   <br/>
-  <label>Tên công ty: </label> <input type="text" th:field="*{company.name}" required>
+  <label class="label">Tên công ty: </label> <input  class="input" type="text" th:field="*{company.name}" required>
   <br/>
-  <label>Số diện thoại công ty: </label> <input type="number" th:field="*{company.phone}"  required>
+  <label class="label">Số diện thoại công ty: </label> <input  class="input" type="number" th:field="*{company.phone}"  required>
   <br/>
-  <label>Email công ty: </label> <input type="email" th:field="*{company.email}" required>
+  <label class="label">Email công ty: </label> <input  class="input" type="email" th:field="*{company.email}" required>
   <br/>
-  <label>Mật khẩu: </label> <input type="text" th:field="*{password}" required>
+  <label class="label">Mật khẩu: </label> <input  class="input" type="text" th:field="*{password}" required>
   <br/>
   <input type="submit" value="Đăng ký" >
 </form>

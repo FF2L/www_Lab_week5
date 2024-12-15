@@ -1,38 +1,54 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
-<head th:replace="~{Component/loading/HeadPage :: head}"></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loc's Job Search App</title>
+  <link rel="icon" type="image/jpeg" th:href="@{/images/logowww.jpg}" >
+  <meta property="og:image" th:content="@{/images/logowww.jpg}">
+  <link rel="stylesheet" href="/css/candidate/UpdateCandidateSkill.css">
+</head>
 <body>
-  <p>This is Update Candidate SKill</p>
+
   <nav>
-    <ul>
+    <ul class="ulMenu">
       <li><a th:href="@{/Candidate/Home}">Home</a></li>
-      <li><a>Công việc đề xuất</a></li>
+      <li th:if="${session.idCan} != -1"><a th:href="@{/Candidate/JobRecoment}">Công việc đề xuất</a></li>
     </ul>
+    <div class="btnHomePage">
+      <button th:if="${session.idCan} != -1">Cập nhật thông tin</button>
+      <button th:if="${session.idCan} != -1" onclick="location.href='/Candidate/UpdateSkill'">Update Skill</button>
+      <button th:if="${session.idCan} != -1" onclick="location.href='/Candidate/Home?Logout=true'">LogOut</button>
+    </div>
   </nav>
+
+  <p><h2>Update Your SKill</h2></p>
+
 <form
 method="post"
 th:action="@{/Candidate/SaveUpdateCanSkill}"
 th:object="${candidateSkill}"
 >
+  <div class="divKyNang">
   <label>Tên kỹ năng: </label>
   <select th:field="*{skill}">
     <option th:each="item : ${listSkill}" th:value="${item.id}" th:text="${item.skillName}"></option>
   </select>
-  <br/>
+  </div>
+  <div class="divKyNang">
   <label>Cấp độ kỹ năng: </label>
   <select th:field="*{skillLevel}">
     <option th:each="item : ${listSkillLevel}" th:value="${item}" th:text="${item}"></option>
   </select>
-  <br>
+  </div>
+  <div class="divKyNang">
   <label>Thông tin thêm: </label>
-  <textarea cols="15" rows="5" required th:field="*{moreInfo}"></textarea>
-  <br>
-  <input type="submit" value="Thêm Kỹ năng">
+  <textarea cols="20" rows="4" required th:field="*{moreInfo}"></textarea>
+  </div>
+  <input class="submit" type="submit" value="Thêm Kỹ năng">
 </form>
 
-<p>Bảng kỹ năng</p>
+<h3>You Skill</h3>
 <table>
   <tr>
     <th>STT</th>
